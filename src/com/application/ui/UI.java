@@ -3,6 +3,7 @@ package com.application.ui;
 import com.application.domain.Department;
 import com.application.domain.Employee;
 import com.application.domain.ExpenseClaim;
+import com.application.domain.StaffEmployee;
 import com.application.exceptions.InvalidEmployeeIdException;
 import com.application.exceptions.NameTooShortException;
 import com.application.utilities.EmployeeUtilities;
@@ -72,8 +73,21 @@ public class UI {
 
         }
 
-        return employee;
+        System.out.println("Are you apply for staff member? (Y/N)");
+        String isStaff=scanner.nextLine();
+        if (isStaff.toUpperCase().equals("Y")) {
+            StaffEmployee staffEmployee = new StaffEmployee(employee);
+            System.out.println("Type the username");
+            staffEmployee.setUsername(scanner.nextLine());
 
+            System.out.println("Type the password");
+            staffEmployee.setPassword(scanner.nextLine());
+
+            return staffEmployee;
+
+        } else {
+            return employee;
+        }
     }
 
     public ExpenseClaim registerNewExpenseClaim() {
